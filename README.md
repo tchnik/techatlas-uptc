@@ -1,68 +1,50 @@
 # TechAtlas UPTC
 
-**Landing page educativa - Proyecto académico**  
-**Autor:** JHONATAN GIRALDO  
-**Código:** 202522863  
+**Landing educativa académica**  
+**Estudiante:** JHONATAN GIRALDO — 202522863  
 **Universidad:** Universidad Pedagógica y Tecnológica de Colombia (UPTC)
+
+**Sitio publicado:** https://tchnik.github.io/techatlas-uptc/
 
 ## Descripción
 
-TechAtlas UPTC es una landing page de carácter académico para presentar una propuesta de consulta y aprendizaje de conceptos de sistemas informáticos. Incluye navegación adaptable a distintos tamaños de pantalla, apartados temáticos y un formulario de interés.
-
-El sitio web es un prototipo independiente y no representa una página oficial de la universidad ni una versión web de la aplicación Android TechAtlas.
+TechAtlas UPTC es una landing page académica que presenta una propuesta para consultar y aprender conceptos de sistemas informáticos. Es un prototipo independiente; no es un sitio oficial de la universidad ni una versión web de la aplicación Android.
 
 ## Funcionalidades
 
-- Página de inicio con presentación del proyecto y acceso a sus secciones.
-- Tarjetas informativas sobre la propuesta y sus beneficios.
-- Pestañas interactivas para explorar programación, redes y aplicaciones.
-- Preguntas frecuentes desplegables.
-- Indicador del progreso de lectura.
-- Formulario con validación de campos, almacenamiento local, recuperación de borradores y opción para eliminar datos guardados.
-- Vista adaptativa para dispositivos móviles, tabletas y computadores.
+- Navegación por secciones y diseño adaptable.
+- Pestañas interactivas sobre programación, redes y aplicaciones.
+- Preguntas frecuentes desplegables e indicador de progreso de lectura.
+- Formulario con validación, borradores guardados en el navegador y opción para borrar los datos.
 
-Los escenarios de uso incluidos en la página son ilustrativos; no se presentan como testimonios reales.
+Los escenarios incluidos son ilustrativos y no corresponden a testimonios reales.
 
 ## Tecnologías
 
-- HTML5 semántico.
-- CSS3 y variables personalizadas de diseño.
-- JavaScript ES6+ sin bibliotecas externas.
-- `localStorage` para conservar temporalmente los campos del formulario.
-- Integración opcional con Formspree para la recepción de mensajes.
+- HTML5, CSS3 y JavaScript ES6+ sin bibliotecas externas.
+- localStorage para conservar temporalmente el borrador del formulario.
+- Integración opcional con Formspree.
 
-## Estructura del repositorio
+## Estructura
 
-```text
-.
-├── index.html       # Página y estilos, componentes y lógica web
-├── README.md        # Información del proyecto
-├── .gitignore       # Exclusiones para control de versiones
-└── .nojekyll        # Configuración para GitHub Pages
-```
+- index.html
+- README.md
+- .gitignore
+- .nojekyll
 
 ## Ejecución local
 
-1. Descarga o clona el repositorio.
-2. Abre `index.html` en un navegador moderno.
-3. Navega por las secciones y comprueba las funciones del formulario.
+Clona o descarga el repositorio y abre index.html en un navegador moderno.
 
-Para revisar el comportamiento publicado, utiliza un servidor web o GitHub Pages.
+## GitHub Pages
 
-## Publicación en GitHub Pages
+El sitio se publica desde la rama main, carpeta raíz (/). Puedes abrirlo aquí: [TechAtlas UPTC](https://tchnik.github.io/techatlas-uptc/).
 
-1. Sube el contenido de esta carpeta a la **raíz** de tu repositorio.
-2. En GitHub, abre **Settings > Pages**.
-3. Selecciona **Deploy from a branch**, la rama `main` y la carpeta `/ (root)`.
-4. Guarda los cambios y consulta la dirección publicada por GitHub.
+## Formulario
 
-## Configuración del formulario
-
-En `index.html` hay una constante llamada `FORM_ENDPOINT`. Debes establecer allí el enlace del formulario de tu cuenta de Formspree antes de habilitar el envío real de mensajes.
-
-Hasta que esa dirección esté configurada, el formulario permite validar y conservar borradores en el navegador, pero **no envía mensajes a un servidor**. No introduzcas contraseñas, números de identificación ni información sensible en los campos de demostración.
+En index.html, la constante FORM_ENDPOINT está vacía. El formulario valida y conserva los borradores en este navegador, pero no envía mensajes a un servidor hasta configurar una URL real de Formspree. No incluyas información sensible en los campos de demostración.
 
 ## Autoría
 
-JHONATAN GIRALDO - 202522863  
+JHONATAN GIRALDO — 202522863  
 Proyecto académico UPTC.
