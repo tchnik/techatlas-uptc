@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="TechAtlas UPTC: prototipo de landing educativa para explorar contenidos de sistemas informáticos.">
+  <meta name="theme-color" content="#123b67">
+  <title>TechAtlas UPTC | Explora, aprende, construye</title>
+  <style>
+    :root {
+      --ta-primary:#123b67; --ta-secondary:#245a83; --ta-accent:#eab739;
+      --ta-bg:#f5f8fc; --ta-surface:#ffffff; --ta-text:#203249;
+      --ta-muted:#5d6b7a; --ta-border:#d6e0eb; --ta-radius:18px;
+      --ta-space:16px; --ta-motion:180ms; --ta-font:system-ui,-apple-system,Segoe UI,sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:var(--ta-font);background:var(--ta-bg);color:var(--ta-text);line-height:1.6}
+    a{color:inherit} a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--ta-accent);outline-offset:3px}
+    button,input,select{font:inherit}
+    .ta-container{width:min(1100px,calc(100% - 36px));margin-inline:auto}
+    .ta-progress{position:fixed;inset:0 auto auto 0;z-index:10;height:4px;width:0;background:var(--ta-accent);box-shadow:0 1px 4px var(--ta-secondary);transition:width var(--ta-motion) linear}
+    .ta-nav{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);border-bottom:1px solid var(--ta-border)}
+    .ta-nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--ta-space);min-height:72px}
+    .ta-brand{font-weight:850;letter-spacing:-.03em;color:var(--ta-primary);font-size:1.18rem;text-decoration:none}
+    .ta-brand span{color:#a47605}
+    .ta-links{display:flex;gap:22px;flex-wrap:wrap}
+    .ta-links a{text-decoration:none;font-weight:650;font-size:.91rem}
+    .ta-links a:hover{text-decoration:underline}
+    .ta-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:0;background:var(--ta-accent);color:#1a2840;padding:12px 20px;border-radius:12px;font-weight:800;cursor:pointer;transition:transform var(--ta-motion)}
+    .ta-button:hover{transform:translateY(-2px)}
+    .ta-button-secondary{background:transparent;color:var(--ta-primary);border:1px solid var(--ta-border)}
+    .ta-hero{padding:85px 0 68px;background:radial-gradient(circle at 82% 18%,#2f648c,transparent 40%),linear-gradient(126deg,#0f315a,#174976);color:white}
+    .ta-hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+    .ta-eyebrow{color:#ffda7a;letter-spacing:.11em;text-transform:uppercase;font-size:.82rem;font-weight:800}
+    .ta-hero h1{font-size:clamp(2.35rem,5.3vw,4.45rem);line-height:1.08;letter-spacing:-.045em;margin:16px 0}
+    .ta-hero p{max-width:580px;color:#e4edf7;font-size:1.08rem}
+    .ta-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .ta-hero-visual{min-height:290px;background:linear-gradient(145deg,#255a89,#123050);border:1px solid #7297b8;border-radius:26px;padding:27px;box-shadow:0 24px 60px #031d35aa}
+    .ta-device-top{display:flex;gap:7px}.ta-device-top i{display:block;width:12px;height:12px;border-radius:50%;background:#e8bb52}
+    .ta-device-title{font-size:1.5rem;font-weight:780;margin:40px 0 18px}
+    .ta-device-card{background:#fff2;border:1px solid #fff3;border-radius:14px;margin:10px 0;padding:15px;color:#eef7ff}
+    .ta-section{padding:68px 0}
+    .ta-heading{font-size:clamp(1.7rem,3.5vw,2.5rem);letter-spacing:-.025em;line-height:1.2;margin:0 0 12px;color:var(--ta-primary)}
+    .ta-lead{color:var(--ta-muted);max-width:700px;margin:0 0 29px}
+    .ta-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .ta-card{background:var(--ta-surface);border:1px solid var(--ta-border);padding:25px;border-radius:var(--ta-radius);box-shadow:0 6px 20px #123b670a}
+    .ta-card h3{margin:9px 0 8px;color:var(--ta-primary);font-size:1.18rem}
+    .ta-number{display:inline-block;color:#9e730f;font-size:.9rem;font-weight:800}
+    .ta-muted{color:var(--ta-muted)}
+    .ta-feature{background:#ecf3fa}
+    .ta-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+    .ta-tabs button{background:white;border:1px solid var(--ta-border);padding:10px 19px;border-radius:var(--ta-radius);cursor:pointer;color:var(--ta-primary)}
+    .ta-tabs button[aria-selected="true"]{background:var(--ta-primary);color:white}
+    .ta-tab-panel{padding:28px;border-radius:var(--ta-radius);background:#fff;border:1px solid var(--ta-border)}
+    .ta-faq details{margin:10px 0;background:var(--ta-surface);border:1px solid var(--ta-border);border-radius:var(--ta-radius);padding:18px}
+    .ta-faq summary{cursor:pointer;font-weight:760;color:var(--ta-primary)}
+    .ta-faq p{margin-bottom:0;color:var(--ta-muted)}
+    .ta-form-section{background:#e9f1f9}
+    .ta-form-layout{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:start}
+    .ta-form{background:var(--ta-surface);border:1px solid var(--ta-border);border-radius:var(--ta-radius);padding:25px;box-shadow:0 15px 38px #173b6412}
+    .ta-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+    .ta-field label{font-weight:680;font-size:.92rem}
+    .ta-field input,.ta-field select{width:100%;border:1px solid #a8b7c8;border-radius:9px;padding:12px;background:#fff;color:var(--ta-text)}
+    .ta-legal{font-size:.8rem;color:var(--ta-muted)}
+    .ta-status{font-size:.9rem;padding:12px;border-radius:10px;margin-top:15px;background:#eaf5eb;color:#1b5c36}
+    .ta-status[hidden],.ta-form[hidden]{display:none}
+    .ta-footer{background:#102d4d;color:#e8f2fc;padding:35px 0}
+    .ta-footer small{color:#bfd0e0}
+    @media(max-width:800px){.ta-grid{grid-template-columns:1fr 1fr}.ta-hero-grid,.ta-form-layout{grid-template-columns:1fr}.ta-hero{padding:60px 0}.ta-links{gap:12px}.ta-hero-visual{min-height:220px}}
+    @media(max-width:520px){.ta-grid{grid-template-columns:1fr}.ta-nav-inner{display:block;padding:14px 0}.ta-links{margin-top:8px}.ta-section{padding:48px 0}.ta-hero-visual{display:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ta-button{transition:none}}
+  </style>
+</head>
+<body>
+  <div class="ta-progress" role="presentation"></div>
+  <header class="ta-nav">
+    <nav class="ta-container ta-nav-inner" aria-label="Menú principal">
+      <a class="ta-brand" href="#inicio">TechAtlas <span>UPTC</span></a>
+      <div class="ta-links"><a href="#beneficios">Beneficios</a><a href="#explorar">Explorar</a><a href="#preguntas">Preguntas</a><a href="#contacto">Contacto</a></div>
+    </nav>
+  </header>
+  <main>
+    <section class="ta-hero" id="inicio" aria-labelledby="titulo-principal">
+      <div class="ta-container ta-hero-grid">
+        <div><div class="ta-eyebrow">Prototipo académico · Tecnología educativa</div>
+          <h1 id="titulo-principal">Comprende la tecnología, concepto a concepto.</h1>
+          <p>TechAtlas UPTC presenta una propuesta educativa para organizar temas de sistemas informáticos y acompañar el aprendizaje de manera clara, visual y progresiva.</p>
+          <div class="ta-actions"><a class="ta-button" href="#contacto">Quiero conocer el proyecto</a><a class="ta-button ta-button-secondary" style="color:white" href="#explorar">Ver la propuesta</a></div>
+        </div>
+        <div class="ta-hero-visual" aria-label="Vista conceptual ilustrativa de TechAtlas">
+          <div class="ta-device-top"><i></i><i></i><i></i></div><div class="ta-device-title">Tu ruta de aprendizaje</div>
+          <div class="ta-device-card">01 · Fundamentos de programación</div><div class="ta-device-card">02 · Redes y seguridad</div><div class="ta-device-card">03 · Desarrollo de aplicaciones</div>
+        </div>
+      </div>
+    </section>
+    <section class="ta-section" id="beneficios" aria-labelledby="beneficios-titulo">
+      <div class="ta-container"><h2 class="ta-heading" id="beneficios-titulo">Una propuesta enfocada en aprender mejor</h2>
+        <p class="ta-lead">Estos beneficios describen objetivos del prototipo, no funcionalidades verificadas de la APK de referencia.</p>
+        <div class="ta-grid">
+          <article class="ta-card"><div class="ta-number">01 / CLARIDAD</div><h3>Conceptos organizados</h3><p>Información presentada en una estructura que facilite comprender los fundamentos técnicos.</p></article>
+          <article class="ta-card"><div class="ta-number">02 / ACCESO</div><h3>Lectura adaptable</h3><p>Diseño de lectura responsiva para pantallas móviles, tabletas y equipos de escritorio.</p></article>
+          <article class="ta-card"><div class="ta-number">03 / PROGRESO</div><h3>Exploración autónoma</h3><p>Rutas de consulta que ayudan a revisar temas según la necesidad del estudiante.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="ta-section ta-feature" id="explorar" aria-labelledby="explorar-titulo">
+      <div class="ta-container"><h2 class="ta-heading" id="explorar-titulo">Explora tres líneas de contenido</h2>
+        <p class="ta-lead">Componente interactivo de pestañas: un snippet independiente con control accesible.</p>
+        <div class="ta-tabs" role="tablist" aria-label="Temas de aprendizaje">
+          <button role="tab" id="ta-tab-1" aria-controls="ta-panel-1" aria-selected="true" data-tab="1">Programación</button>
+          <button role="tab" id="ta-tab-2" aria-controls="ta-panel-2" aria-selected="false" data-tab="2" tabindex="-1">Redes</button>
+          <button role="tab" id="ta-tab-3" aria-controls="ta-panel-3" aria-selected="false" data-tab="3" tabindex="-1">Aplicaciones</button>
+        </div>
+        <div id="ta-panel-1" class="ta-tab-panel" role="tabpanel" aria-labelledby="ta-tab-1"><h3>Programación y lógica</h3><p>Variables, condiciones, funciones, estructuras de datos y pruebas como fundamentos para construir soluciones.</p></div>
+        <div id="ta-panel-2" class="ta-tab-panel" role="tabpanel" aria-labelledby="ta-tab-2" hidden><h3>Redes y buenas prácticas</h3><p>Conceptos de comunicación, protocolos, protección de información y uso responsable de servicios digitales.</p></div>
+        <div id="ta-panel-3" class="ta-tab-panel" role="tabpanel" aria-labelledby="ta-tab-3" hidden><h3>Desarrollo de aplicaciones</h3><p>Diseño de interfaz, navegación, almacenamiento y depuración de proyectos orientados a usuarios reales.</p></div>
+      </div>
+    </section>
+    <section class="ta-section" id="testimonios" aria-labelledby="testimonios-titulo">
+      <div class="ta-container"><h2 class="ta-heading" id="testimonios-titulo">Escenarios de uso propuestos</h2>
+        <p class="ta-lead">Los siguientes son ejemplos ficticios de necesidades estudiantiles; no son testimonios de usuarios reales.</p>
+        <div class="ta-grid">
+          <article class="ta-card"><h3>Antes de un parcial</h3><p>“Quisiera repasar estructuras de control desde una misma pantalla.”</p><small class="ta-muted">Escenario ilustrativo A</small></article>
+          <article class="ta-card"><h3>Durante un proyecto</h3><p>“Necesito relacionar diseño de software con prácticas de seguridad.”</p><small class="ta-muted">Escenario ilustrativo B</small></article>
+          <article class="ta-card"><h3>Aprendizaje autónomo</h3><p>“Me ayudaría encontrar conceptos sin depender de múltiples sitios.”</p><small class="ta-muted">Escenario ilustrativo C</small></article>
+        </div>
+      </div>
+    </section>
+    <section class="ta-section ta-feature ta-faq" id="preguntas" aria-labelledby="faq-titulo">
+      <div class="ta-container"><h2 class="ta-heading" id="faq-titulo">Preguntas frecuentes</h2>
+        <details><summary>¿Esta landing corresponde a una versión publicada de la APK?</summary><p>No. Es un prototipo web académico independiente que utiliza el nombre TechAtlas UPTC como concepto de presentación.</p></details>
+        <details><summary>¿Se puede consultar desde un celular?</summary><p>La estructura HTML y CSS fue desarrollada con un diseño adaptable. La prueba visual final debe realizarse en dispositivos y resoluciones solicitadas.</p></details>
+        <details><summary>¿Qué ocurre con los datos del formulario?</summary><p>Se conservan temporalmente en el navegador hasta el envío; un servicio externo requiere configurar un endpoint propio y obtener consentimiento.</p></details>
+      </div>
+    </section>
+    <section class="ta-section ta-form-section" id="contacto" aria-labelledby="form-titulo">
+      <div class="ta-container ta-form-layout"><div><h2 class="ta-heading" id="form-titulo">Conoce el proyecto</h2>
+        <p class="ta-lead">Formulario de interés para demostración de persistencia. Los datos se conservan en este navegador hasta que se envían correctamente o se eliminan.</p>
+        <p><strong>Para activar el envío real:</strong> sustituye la constante <code>FORM_ENDPOINT</code> por tu URL de Formspree y publica la página.</p>
+        <button class="ta-button ta-button-secondary" id="ta-clear" type="button">Borrar mis datos guardados</button></div>
+        <div><form id="ta-form" class="ta-form" novalidate>
+          <div class="ta-field"><label for="ta-nombre">Nombre</label><input id="ta-nombre" name="nombre" autocomplete="name" maxlength="80" required></div>
+          <div class="ta-field"><label for="ta-email">Correo electrónico</label><input id="ta-email" name="email" type="email" autocomplete="email" maxlength="120" required></div>
+          <div class="ta-field"><label for="ta-interes">Tema de interés</label><select id="ta-interes" name="interes" required><option value="">Selecciona un tema</option><option value="Programación">Programación</option><option value="Redes">Redes y seguridad</option><option value="Aplicaciones">Aplicaciones</option></select></div>
+          <div class="ta-field"><label for="ta-mensaje">¿Qué quisieras aprender?</label><input id="ta-mensaje" name="mensaje" maxlength="180" required></div>
+          <div class="ta-field"><label><input id="ta-consent" type="checkbox" required> Autorizo el envío de los datos proporcionados para esta demostración académica.</label></div>
+          <button class="ta-button" type="submit" id="ta-send">Enviar solicitud</button><p class="ta-legal">No ingreses contraseñas, documentos de identidad ni información sensible. localStorage es accesible desde este navegador.</p>
+          <p class="ta-status" role="status" id="ta-status" hidden></p>
+        </form><div class="ta-card" id="ta-thanks" hidden role="status"></div></div>
+      </div>
+    </section>
+  </main>
+  <footer class="ta-footer"><div class="ta-container"><strong>TechAtlas UPTC · Prototipo académico</strong><p>JHONATAN GIRALDO · Código 202522863</p><small>Universidad Pedagógica y Tecnológica de Colombia | Landing page de práctica, no sitio oficial institucional.</small></div></footer>
+  <script>
+    'use strict';
+    // Snippet 1: barra de progreso; encapsulación IIFE, sin variables globales.
+    (()=>{const bar=document.querySelector('.ta-progress');if(!bar)return;const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?Math.min(100,scrollY/max*100):0)+'%'};window.addEventListener('scroll',update,{passive:true});update()})();
+    // Snippet 2: pestañas con selección accesible.
+    (()=>{const tabs=[...document.querySelectorAll('.ta-tabs [role="tab"]')];if(!tabs.length)return;const select=(id)=>{tabs.forEach(t=>{const active=t.dataset.tab===id;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById('ta-panel-'+t.dataset.tab).hidden=!active})};tabs.forEach(t=>{t.addEventListener('click',()=>select(t.dataset.tab));t.addEventListener('keydown',e=>{if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();const next=(tabs.indexOf(t)+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;select(tabs[next].dataset.tab);tabs[next].focus()})})})();
+    // Snippet 3: FAQ accesible y exclusiva (solo una pregunta abierta), IIFE.
+    (()=>{const list=[...document.querySelectorAll('.ta-faq details')];list.forEach(item=>item.addEventListener('toggle',()=>{if(item.open)list.forEach(other=>{if(other!==item)other.open=false})}))})();
+    // Snippet 4: conversión con validación, persistencia y envío POST externo.
+    (()=>{
+      // Configurar la URL auténtica de Formspree. No publicar una credencial o token secreto.
+      const FORM_ENDPOINT='';
+      const PREFIX='ta_u3_202522863_';
+      const keys=['nombre','email','interes','mensaje'];
+      const form=document.getElementById('ta-form');
+      const thanks=document.getElementById('ta-thanks');
+      const status=document.getElementById('ta-status');
+      const send=document.getElementById('ta-send');
+      const consentimiento=document.getElementById('ta-consent');
+      const safeGet=(key)=>{try{return localStorage.getItem(PREFIX+key)}catch{return null}};
+      const safeSet=(key,value)=>{try{localStorage.setItem(PREFIX+key,value)}catch{/* storage may be disabled */}};
+      const safeRemove=(key)=>{try{localStorage.removeItem(PREFIX+key)}catch{/* storage may be disabled */}};
+      const notice=(message,ok=false)=>{status.hidden=false;status.textContent=message;status.style.background=ok?'#e6f4e8':'#fff0d5';status.style.color=ok?'#19603b':'#5d3e08'};
+      const showThanks=()=>{const name=safeGet('converted_name')||'estudiante';thanks.hidden=false;thanks.textContent=`Gracias, ${name}. Tu solicitud se registró correctamente.`;form.hidden=true};
+      if(safeGet('converted')==='yes'){showThanks()}
+      else {
+        keys.forEach(k=>{const field=form.elements.namedItem(k);if(field){field.value=safeGet(k)||'';field.addEventListener('input',()=>safeSet(k,field.value));field.addEventListener('change',()=>safeSet(k,field.value))}});
+        consentimiento.checked=safeGet('consentimiento')==='yes';
+        consentimiento.addEventListener('change',()=>safeSet('consentimiento',consentimiento.checked?'yes':'no'));
+      }
+      document.getElementById('ta-clear').addEventListener('click',()=>{[...keys,'consentimiento','converted','converted_name'].forEach(safeRemove);form.reset();form.hidden=false;thanks.hidden=true;status.hidden=true;notice('Datos guardados eliminados de este navegador.',true)});
+      form.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+        if(!form.reportValidity()){notice('Completa correctamente todos los campos y autoriza el envío.');return}
+        if(!FORM_ENDPOINT.startsWith('https://formspree.io/f/')){notice('Envío no disponible: configura un endpoint válido de Formspree en el código.');return}
+        send.disabled=true;send.textContent='Enviando...';status.hidden=true;
+        try{
+          const payload=Object.fromEntries(keys.map(k=>[k,form.elements.namedItem(k).value.trim()]));
+          const resp=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+          if(!resp.ok)throw new Error('HTTP '+resp.status);
+          [...keys,'consentimiento'].forEach(safeRemove);
+          safeSet('converted','yes');safeSet('converted_name',payload.nombre);
+          showThanks();
+        }catch(error){notice('No se pudo confirmar el envío. Se conservaron tus datos para reintentar.')}
+        finally{send.disabled=false;send.textContent='Enviar solicitud'}
+      });
+    })();
+  </script>
+</body>
+</html>
