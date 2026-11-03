@@ -1,7 +1,6 @@
 # TechAtlas UPTC
 
-**Landing educativa académica**  
-**Estudiante:** JHONATAN GIRALDO  
+**Landing educativa académica** 
 **Universidad:** Universidad Pedagógica y Tecnológica de Colombia (UPTC)
 
 **Sitio publicado:** https://tchnik.github.io/techatlas-uptc/
@@ -43,8 +42,3 @@ El sitio se publica desde la rama main, carpeta raíz (/). Puedes abrirlo aquí:
 ## Formulario
 
 En index.html, la constante FORM_ENDPOINT está vacía. El formulario valida y conserva los borradores en este navegador, pero no envía mensajes a un servidor hasta configurar una URL real de Formspree. No incluyas información sensible en los campos de demostración.
-
-## Autoría
-
-JHONATAN GIRALDO  
-Proyecto académico UPTC.
