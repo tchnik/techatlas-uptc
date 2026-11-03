@@ -137,7 +137,7 @@
     <section class="ta-section ta-form-section" id="contacto" aria-labelledby="form-titulo">
       <div class="ta-container ta-form-layout"><div><h2 class="ta-heading" id="form-titulo">Conoce el proyecto</h2>
         <p class="ta-lead">Formulario de interés para demostración de persistencia. Los datos se conservan en este navegador hasta que se envían correctamente o se eliminan.</p>
-        <p><strong>Para activar el envío real:</strong> sustituye la constante <code>FORM_ENDPOINT</code> por tu URL de Formspree y publica la página.</p>
+        <p>Las solicitudes se envían mediante Formspree. Recibirás una confirmación cuando el servicio acepte el envío.</p>
         <button class="ta-button ta-button-secondary" id="ta-clear" type="button">Borrar mis datos guardados</button></div>
         <div><form id="ta-form" class="ta-form" novalidate>
           <div class="ta-field"><label for="ta-nombre">Nombre</label><input id="ta-nombre" name="nombre" autocomplete="name" maxlength="80" required></div>
@@ -163,7 +163,7 @@
     // Snippet 4: conversión con validación, persistencia y envío POST externo.
     (()=>{
       // Configurar la URL auténtica de Formspree. No publicar una credencial o token secreto.
-      const FORM_ENDPOINT='';
+      const FORM_ENDPOINT='https://formspree.io/f/mbggpbjg';
       const PREFIX='ta_u3_';
       const keys=['nombre','email','interes','mensaje'];
       const form=document.getElementById('ta-form');
