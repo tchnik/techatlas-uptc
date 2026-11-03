@@ -1,7 +1,7 @@
 # TechAtlas UPTC
 
 **Landing educativa académica**  
-**Estudiante:** JHONATAN GIRALDO — 202522863  
+**Estudiante:** JHONATAN GIRALDO  
 **Universidad:** Universidad Pedagógica y Tecnológica de Colombia (UPTC)
 
 **Sitio publicado:** https://tchnik.github.io/techatlas-uptc/
@@ -46,5 +46,5 @@ En index.html, la constante FORM_ENDPOINT está vacía. El formulario valida y c
 
 ## Autoría
 
-JHONATAN GIRALDO — 202522863  
+JHONATAN GIRALDO  
 Proyecto académico UPTC.
